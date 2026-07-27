@@ -19,12 +19,14 @@ rede
   -modelo TCP/IP
 
 
+vamos usar escrita e leitura
+
 Thread -> mini processo -----> -declarar e envelopar          -iniciar          -pausar       -reiniciar        -finalizar ou matar
           *             -nome     
           *memoria+cpu
           *tempo
           *pai
-Thread se compartilhar memoria
+Thread sem compartilhar memoria
 Seção critica
 Thread com compartilhar memoria  *bloqueio
                                  ->manter, semaforo, deadlock
