@@ -7,3 +7,24 @@ Obrigacoes e avaliacoes:
   - todos os codigos tem q seguir a ideia da arquitetura MVC
   - todo codigo tem que ter comentario, se nao o professor vai devolver o codigo 
 
+Arquiteruras de sistemas:
+  1) Cliente-Servidor-> Modelo TCP/IP -> pratico X teorico OSI = 7 camadas
+TCP/IP
+aplicacao
+transporte
+internet 
+rede
+
+  2)Peer to peer (ponto a ponto)
+  -modelo TCP/IP
+
+
+Thread -> mini processo -----> -declarar e envelopar          -iniciar          -pausar       -reiniciar        -finalizar ou matar
+          *             -nome     
+          *memoria+cpu
+          *tempo
+          *pai
+Thread se compartilhar memoria
+Seção critica
+Thread com compartilhar memoria  *bloqueio
+                                 ->manter, semaforo, deadlock
