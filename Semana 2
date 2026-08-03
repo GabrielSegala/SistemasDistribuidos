@@ -1,2 +1,20 @@
 O objetivo de sistemas distribuidos é compartilhar recursos entre as pessoas responsaveis pelo projeto
 
+quais os principais recursos que se compartilham?
+Processador - placas graficas, memoria, disco.
+
+como um computador compartilha recursos com outro computador?
+-comunicacao de dados
+-protocolo
+
+
+
+como fazer comunicacao nao bloqueante?
+
+qual a diferenca de thread sem compartilhamento de memoria e com?
+
+
+
+THREADS SEM COMPARTILHAMETNO DE MEMORIA
+
+
