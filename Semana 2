@@ -9,12 +9,17 @@ como um computador compartilha recursos com outro computador?
 
 
 
-como fazer comunicacao nao bloqueante?
+*como fazer comunicacao nao bloqueante?
+Comunicação não bloqueante significa que uma thread ou processo não fica parado esperando uma operação terminar. Em vez disso, ele continua executando outras tarefas.
 
-qual a diferenca de thread sem compartilhamento de memoria e com?
-
-
+*qual a diferenca de thread sem compartilhamento de memoria e com?
+COM - As threads de um mesmo processo compartilham o mesmo espaço de memória.
+SEM - Nesse modelo, cada unidade de execução possui sua própria memória.
 
 THREADS SEM COMPARTILHAMETNO DE MEMORIA
 
+
+Formas de criar Threads
+1) Objeto thread (nome) - melhor para pouco codigo
+2) new Thread
 
