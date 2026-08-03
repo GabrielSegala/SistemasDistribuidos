@@ -23,3 +23,5 @@ Formas de criar Threads
 1) Objeto thread (nome) - melhor para pouco codigo
 2) new Thread
 
+
+o objeto *delega*
