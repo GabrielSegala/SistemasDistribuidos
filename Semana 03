@@ -1,2 +1,16 @@
 -Colegas mostraram como resolveram a atividade da Semana 02
--
+
+-exemplos de codigo em Java, pyhton e C# sobre a matéria
+
+
+
+
+Threads:
+-criar threads extendendo a classe threads e sobrescrevendo o metodo run()
+                                ou  
+-interface runnable
+
+
+
+Exemplos
+1.JAVA - servidor simples multithread usando *Executor Service* 
