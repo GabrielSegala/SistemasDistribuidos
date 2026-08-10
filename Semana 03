@@ -12,6 +12,8 @@ Threads:
 
 
 
+
+----------github-> sistemas distribuidos -> 2-threads -> todos os arquivos foram apresentados em aula.----------
 Exemplos
 1. JAVA - servidor simples multithread usando *Executor Service* 
 2. PYHTON - Servidor multithread com threading (I/O-bound)
@@ -25,3 +27,15 @@ ID da thread (número único no processo)
 Nome da thread (definido manualmente ou pelo sistema)
 Isso é útil para debug, logging e até sincronização.
 -----------------------------------------------------------------------------------
+Threads sem x com Memória Compartilhada
+Threads SEM memória compartilhada
+
+Cada thread recebe parâmetros próprios (ex.: números, strings, objetos independentes).
+As variáveis não são acessadas em comum.
+Mais fáceis de implementar, sem necessidade de sincronização.
+Menos propensas a condições de corrida.
+Threads com memória compartilhada
+
+Duas ou mais threads acessam a mesma estrutura de dados (lista, dicionário, objeto).
+Necessário uso de mecanismos de sincronização (Java synchronized, C# lock, Python threading.Lock).
+Mais eficientes em alguns casos, MAS REQUEREM cuidado com concorrência (deadlocks, race conditions).
