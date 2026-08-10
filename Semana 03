@@ -13,4 +13,15 @@ Threads:
 
 
 Exemplos
-1.JAVA - servidor simples multithread usando *Executor Service* 
+1. JAVA - servidor simples multithread usando *Executor Service* 
+2. PYHTON - Servidor multithread com threading (I/O-bound)
+3. C# – Servidor TCP com Threads
+
+-----------------------------------------------------------------------------------
+Threads e suas identificações
+Quando se dispara threads nas linguagens Java, C# e Python, mesmo sem usar memória compartilhada, ainda é possível identificar e monitorar qual thread está executando por meio de informações como:
+
+ID da thread (número único no processo)
+Nome da thread (definido manualmente ou pelo sistema)
+Isso é útil para debug, logging e até sincronização.
+-----------------------------------------------------------------------------------
