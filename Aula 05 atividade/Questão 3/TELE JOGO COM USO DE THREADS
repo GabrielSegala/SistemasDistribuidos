@@ -1,0 +1,183 @@
+TELE JOGO COM USO DE THREADS
+============================
+
+1. INTRODUCAO
+-------------
+
+O Tele Jogo e um exemplo de aplicacao que pode utilizar threads para
+realizar diferentes tarefas de forma concorrente.
+
+A utilizacao de threads permite que diferentes partes do jogo sejam
+executadas ao mesmo tempo, como a movimentacao dos jogadores, o
+processamento das jogadas e a atualizacao das informacoes do jogo.
+
+O objetivo dessa atividade e compreender o funcionamento do Tele Jogo
+utilizando threads em duas situacoes:
+
+- Sem compartilhamento de recurso.
+- Com compartilhamento de recurso.
+
+
+2. TELE JOGO SEM COMPARTILHAMENTO DE RECURSO
+--------------------------------------------
+
+Na versao sem compartilhamento de recurso, cada thread executa sua
+propria tarefa sem precisar modificar um recurso utilizado por outra
+thread.
+
+Por exemplo, cada jogador pode possuir sua propria thread.
+
+Cada thread pode controlar as informacoes do seu jogador, como:
+
+- Posicao.
+- Movimento.
+- Pontuacao.
+- Comandos recebidos.
+
+Como os dados utilizados por cada thread sao independentes, uma thread
+nao precisa acessar diretamente os dados utilizados por outra.
+
+Dessa forma, nao existe a necessidade de utilizar mecanismos de
+exclusao mutua para esses recursos.
+
+
+3. FUNCIONAMENTO SEM COMPARTILHAMENTO
+-------------------------------------
+
+O funcionamento pode ser representado da seguinte forma:
+
+1. O programa inicia o jogo.
+2. Uma thread e criada para cada jogador.
+3. Cada thread recebe e processa as acoes do seu jogador.
+4. As threads executam suas tarefas de forma concorrente.
+5. Cada thread atualiza somente os dados pertencentes ao seu jogador.
+6. O jogo continua ate que uma condicao de finalizacao seja atingida.
+
+Como os recursos sao independentes, as threads podem trabalhar
+simultaneamente sem precisar esperar umas pelas outras.
+
+
+4. COMPARTILHAMENTO DE RECURSO
+------------------------------
+
+Na versao com compartilhamento de recurso, duas ou mais threads podem
+precisar acessar ou modificar o mesmo recurso.
+
+Um exemplo seria uma variavel que representa a pontuacao geral do jogo.
+
+Se dois jogadores marcarem pontos ao mesmo tempo, as duas threads podem
+tentar modificar essa mesma variavel.
+
+Nesse caso, existe um recurso compartilhado entre as threads.
+
+
+5. PROBLEMA DA CONCORRENCIA
+---------------------------
+
+Quando varias threads acessam o mesmo recurso ao mesmo tempo, pode
+ocorrer uma condicao de corrida (race condition).
+
+Por exemplo, considerando que a pontuacao atual seja:
+
+   PONTUACAO = 10
+
+Duas threads podem tentar adicionar 1 ponto simultaneamente.
+
+As duas threads podem ler o valor 10 antes que qualquer uma delas
+termine a atualizacao.
+
+Nesse caso, uma atualizacao pode sobrescrever a outra e o resultado
+final pode ser incorreto.
+
+
+6. EXCLUSAO MUTUA
+-----------------
+
+Para evitar problemas com recursos compartilhados, pode ser utilizada
+a exclusao mutua.
+
+A exclusao mutua garante que apenas uma thread por vez execute uma
+parte critica do programa.
+
+Essa parte e chamada de secao critica.
+
+No Tele Jogo, uma secao critica poderia ser a parte do programa
+responsavel por atualizar uma pontuacao compartilhada.
+
+Enquanto uma thread estiver atualizando esse recurso, as outras threads
+devem aguardar.
+
+
+7. TELE JOGO COM COMPARTILHAMENTO DE RECURSO
+--------------------------------------------
+
+Na versao com compartilhamento de recurso, as threads dos jogadores
+podem acessar uma estrutura ou variavel comum.
+
+Por exemplo:
+
+   PONTUACAO = 0
+
+Quando um jogador realiza uma determinada acao, sua thread pode
+precisar alterar essa pontuacao.
+
+Nesse caso, o acesso a pontuacao deve ser controlado para evitar que
+duas threads alterem o valor simultaneamente.
+
+
+8. UTILIZACAO DE MUTEX
+----------------------
+
+Um mutex pode ser utilizado para proteger o recurso compartilhado.
+
+O funcionamento pode ser representado da seguinte forma:
+
+1. A thread solicita o acesso ao recurso.
+2. A thread adquire o mutex.
+3. A thread entra na secao critica.
+4. A thread modifica o recurso compartilhado.
+5. A thread sai da secao critica.
+6. A thread libera o mutex.
+7. Outra thread pode acessar o recurso.
+
+Dessa forma, apenas uma thread por vez pode modificar o recurso
+protegido.
+
+
+9. COMPARACAO
+-------------
+
+No Tele Jogo sem compartilhamento de recurso, cada thread trabalha
+principalmente com seus proprios dados.
+
+Nesse caso:
+
+- As threads possuem dados independentes.
+- Nao existe acesso simultaneo ao mesmo recurso.
+- Nao e necessario utilizar exclusao mutua para esses dados.
+
+No Tele Jogo com compartilhamento de recurso:
+
+- As threads podem acessar os mesmos dados.
+- Pode ocorrer uma condicao de corrida.
+- E necessario controlar o acesso ao recurso.
+- Pode ser utilizado um mutex ou outro mecanismo de sincronizacao.
+
+
+10. RESUMO
+----------
+
+O Tele Jogo permite compreender na pratica como as threads podem ser
+utilizadas para executar tarefas de forma concorrente.
+
+Na versao sem compartilhamento de recurso, as threads trabalham com
+dados independentes e nao precisam disputar o acesso a um mesmo
+recurso.
+
+Na versao com compartilhamento de recurso, varias threads podem
+acessar os mesmos dados. Nesse caso, e necessario utilizar mecanismos
+de sincronizacao para evitar condicoes de corrida e garantir que os
+dados sejam atualizados corretamente.
+
+A principal diferenca entre as duas versoes e a existencia ou nao de
+recursos compartilhados entre as threads.
