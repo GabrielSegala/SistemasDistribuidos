@@ -1,0 +1,155 @@
+
+RELOGIOS FISICOS E LOGICOS, EXCLUSAO MUTUA E ELEICAO
+====================================================
+
+1. RELOGIOS FISICOS
+-------------------
+
+Em um sistema distribuido, cada computador possui seu proprio relogio
+fisico. Como esses relogios nao sao perfeitamente sincronizados, podem
+existir diferencas entre os horarios dos diferentes computadores.
+
+Essa diferenca pode aumentar com o tempo devido ao desvio do relogio
+(clock drift).
+
+A sincronizacao de relogios fisicos busca manter os relogios dos
+diferentes computadores proximos de um mesmo horario.
+
+Entre os mecanismos utilizados estao algoritmos como:
+
+- Cristian
+- NTP (Network Time Protocol)
+- PTP (Precision Time Protocol)
+
+O problema e importante porque, em um sistema distribuido, apenas
+observar o horario local de cada maquina nao e suficiente para determinar
+corretamente a ordem em que determinados eventos aconteceram.
+
+
+2. RELOGIOS LOGICOS
+-------------------
+
+Os relogios logicos nao tem como objetivo representar o horario real.
+Eles servem para determinar a ordem dos eventos em um sistema
+distribuido.
+
+O conceito foi apresentado por Leslie Lamport em 1978.
+
+Lamport definiu a relacao "happened-before", representada por "->",
+para indicar quando um evento pode ter ocorrido antes de outro.
+
+As principais regras do relogio logico de Lamport sao:
+
+1. Cada processo possui um contador logico.
+2. Antes de um evento, o contador e incrementado.
+3. Ao enviar uma mensagem, o processo inclui seu timestamp.
+4. Ao receber uma mensagem com timestamp T, o processo atualiza seu
+   relogio para:
+
+   C = max(C, T) + 1
+
+Assim, se o evento A influencia causalmente o evento B:
+
+   A -> B  =>  C(A) < C(B)
+
+Porem, o contrario nao e necessariamente verdadeiro. Ter C(A) < C(B)
+nao significa obrigatoriamente que A causou B.
+
+Tambem existem os relogios vetoriais, que utilizam um vetor de
+contadores para representar melhor as relacoes de causalidade e
+identificar eventos concorrentes.
+
+
+3. EXCLUSAO MUTUA
+-----------------
+
+A exclusao mutua tem como objetivo garantir que apenas um processo tenha
+acesso a uma secao critica por vez.
+
+Em sistemas distribuidos, os processos normalmente nao compartilham
+uma memoria comum. Por isso, a coordenacao precisa ser feita por meio
+de troca de mensagens.
+
+Uma solucao de exclusao mutua deve garantir principalmente:
+
+- Seguranca: dois processos nao podem estar simultaneamente na secao
+  critica.
+
+- Progresso: um processo que solicita acesso deve eventualmente
+  conseguir entrar.
+
+- Justica: os processos nao devem esperar indefinidamente enquanto
+  outros continuam obtendo acesso.
+
+
+ALGORITMO DE LAMPORT
+--------------------
+
+No algoritmo de Lamport, cada processo mantem uma fila de requisicoes
+ordenada pelos timestamps dos relogios logicos.
+
+Quando um processo deseja entrar na secao critica:
+
+1. Incrementa seu relogio.
+2. Coloca sua requisicao na propria fila.
+3. Envia uma mensagem REQUEST aos outros processos.
+4. Recebe REPLY dos demais processos.
+5. Entra na secao critica quando sua requisicao estiver no inicio da
+   fila e todos os REPLY tiverem sido recebidos.
+6. Ao sair, envia uma mensagem RELEASE.
+
+O algoritmo utiliza 3(N-1) mensagens para cada entrada na secao critica:
+
+- REQUEST
+- REPLY
+- RELEASE
+
+
+4. ELEICAO
+----------
+
+A eleicao em sistemas distribuidos e utilizada para escolher um
+processo que assumira o papel de coordenador ou lider.
+
+Esse coordenador pode ser utilizado para controlar determinados
+recursos ou organizar operacoes que precisam de uma autoridade central.
+
+Quando o coordenador atual falha, os demais processos podem executar
+um algoritmo de eleicao para escolher um novo coordenador.
+
+
+ALGORITMO BULLY
+---------------
+
+No algoritmo Bully, cada processo possui um identificador unico.
+
+Quando um processo percebe que o coordenador falhou:
+
+1. Ele inicia uma eleicao.
+2. Envia mensagens de eleicao para os processos que possuem
+   identificadores maiores.
+3. Se nenhum processo maior responder, ele se torna o coordenador.
+4. Se um processo maior responder, esse processo assume a
+   responsabilidade pela eleicao.
+5. O processo vencedor informa aos demais que e o novo coordenador.
+
+Dessa forma, normalmente o processo ativo com maior identificador
+torna-se o coordenador.
+
+
+ALGORITMO EM ANEL
+-----------------
+
+No algoritmo em anel, os processos sao organizados logicamente em um
+anel.
+
+Quando um processo detecta a falha do coordenador:
+
+1. Ele inicia uma mensagem de eleicao.
+2. A mensagem circula pelo anel.
+3. Cada processo adiciona ou compara seu identificador.
+4. Ao completar o percurso, o maior identificador e escolhido.
+5. Uma mensagem informa aos processos quem e o novo coordenador.
+
+Os algoritmos Bully e Ring sao exemplos classicos de algoritmos de
+eleicao em sistemas distribuidos.
