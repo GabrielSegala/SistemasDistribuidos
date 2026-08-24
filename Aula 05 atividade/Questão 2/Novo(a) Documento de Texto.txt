@@ -1,0 +1,200 @@
+
+TEORIA DE POOL DE THREADS
+=========================
+
+1. THREADS
+----------
+
+Uma thread e uma unidade de execucao dentro de um processo. Ela permite
+que diferentes tarefas sejam executadas de forma concorrente dentro do
+mesmo programa.
+
+Um processo pode possuir varias threads, que compartilham recursos como
+memoria e arquivos, mas possuem seu proprio fluxo de execucao.
+
+A utilizacao de threads permite que programas realizem varias tarefas
+ao mesmo tempo, podendo melhorar o desempenho e a capacidade de
+resposta de uma aplicacao.
+
+
+2. POOL DE THREADS
+------------------
+
+O pool de threads e uma tecnica utilizada para controlar e reutilizar
+um conjunto de threads durante a execucao de um programa.
+
+Em vez de criar uma nova thread para cada tarefa, um numero determinado
+de threads e criado previamente.
+
+Essas threads ficam disponiveis para executar tarefas que sao colocadas
+em uma fila.
+
+Quando uma thread termina uma tarefa, ela pode ser reutilizada para
+executar outra tarefa.
+
+Dessa forma, o pool evita a criacao e destruicao constante de threads.
+
+
+3. FUNCIONAMENTO DO POOL DE THREADS
+-----------------------------------
+
+O funcionamento basico de um pool de threads ocorre da seguinte forma:
+
+1. O programa cria uma quantidade determinada de threads.
+2. As threads ficam aguardando tarefas.
+3. Uma tarefa e adicionada a uma fila.
+4. Uma thread disponivel retira uma tarefa da fila.
+5. A thread executa a tarefa.
+6. Ao terminar, a thread retorna ao pool.
+7. A thread pode executar uma nova tarefa.
+
+Assim, varias tarefas podem ser executadas utilizando um conjunto
+limitado de threads.
+
+
+4. FILA DE TAREFAS
+------------------
+
+A fila de tarefas e utilizada para armazenar as tarefas que ainda nao
+foram executadas.
+
+Quando todas as threads do pool estao ocupadas, novas tarefas podem
+ficar aguardando na fila.
+
+Quando uma thread termina sua tarefa atual, ela pode retirar uma nova
+tarefa da fila.
+
+Por exemplo, considerando um pool com 5 threads e 20 tarefas:
+
+- As 5 primeiras tarefas podem ser executadas inicialmente.
+- As outras 15 tarefas ficam aguardando na fila.
+- Conforme as threads terminam, novas tarefas sao retiradas da fila.
+
+Dessa forma, nao e necessario criar uma thread para cada tarefa.
+
+
+5. VANTAGENS
+------------
+
+O uso de um pool de threads apresenta algumas vantagens:
+
+- Reduz o custo de criacao e destruicao de threads.
+
+- Permite reutilizar threads para varias tarefas.
+
+- Evita a criacao excessiva de threads.
+
+- Permite controlar a quantidade de threads executando
+  simultaneamente.
+
+- Pode melhorar o desempenho de aplicacoes que executam muitas tarefas.
+
+- Facilita o gerenciamento de tarefas concorrentes.
+
+
+6. TAMANHO DO POOL
+------------------
+
+A quantidade de threads utilizadas no pool deve ser escolhida de acordo
+com o tipo de tarefa que sera executada.
+
+Em tarefas que utilizam principalmente o processador, normalmente nao e
+necessario utilizar uma quantidade muito grande de threads.
+
+Em tarefas que envolvem entrada e saida, como acesso a arquivos,
+bancos de dados ou comunicacao de rede, pode ser interessante utilizar
+mais threads, pois algumas podem ficar esperando enquanto outras
+continuam executando.
+
+Portanto, o tamanho ideal do pool depende das caracteristicas da
+aplicacao e dos recursos disponiveis no sistema.
+
+
+7. COMPARTILHAMENTO DE RECURSOS
+-------------------------------
+
+Como varias threads podem executar simultaneamente, elas podem acessar
+os mesmos recursos.
+
+Por exemplo, duas threads podem tentar modificar uma mesma variavel ao
+mesmo tempo.
+
+Esse tipo de situacao pode causar uma condicao de corrida (race
+condition), fazendo com que o resultado dependa da ordem em que as
+threads executam suas operacoes.
+
+Para evitar esses problemas, podem ser utilizados mecanismos de
+sincronizacao, como:
+
+- Mutex
+- Semaforos
+- Locks
+- Variaveis de condicao
+
+Esses mecanismos permitem controlar o acesso das threads aos recursos
+compartilhados.
+
+
+8. EXEMPLO DE UTILIZACAO
+------------------------
+
+Considere um programa que precisa executar 100 tarefas.
+
+Sem utilizar um pool de threads, uma possivel solucao seria criar uma
+nova thread para cada tarefa.
+
+Nesse caso:
+
+   100 tarefas
+   100 threads
+
+Com um pool de 5 threads:
+
+   100 tarefas
+     5 threads
+
+As 5 threads executam as tarefas e, quando terminam, retiram novas
+tarefas da fila.
+
+Dessa forma, as mesmas 5 threads podem executar todas as 100 tarefas,
+evitando a criacao de uma grande quantidade de threads.
+
+
+9. POOL DE THREADS EM SERVIDORES
+--------------------------------
+
+O pool de threads e muito utilizado em servidores que precisam atender
+varias requisicoes simultaneamente.
+
+Quando uma requisicao chega ao servidor, ela pode ser colocada em uma
+fila de tarefas.
+
+Uma thread disponivel do pool retira a requisicao e realiza seu
+processamento.
+
+Quando termina, a thread fica disponivel para atender outra
+requisicao.
+
+Isso permite controlar a quantidade de requisicoes sendo processadas
+simultaneamente e evita a criacao excessiva de threads.
+
+
+10. RESUMO
+----------
+
+O pool de threads e uma tecnica utilizada para reutilizar threads na
+execucao de varias tarefas.
+
+Em vez de criar uma nova thread para cada tarefa, o sistema mantem um
+conjunto de threads que podem ser reutilizadas.
+
+Os principais elementos de um pool de threads sao:
+
+- Threads trabalhadoras.
+- Fila de tarefas.
+- Controle da quantidade de threads.
+- Mecanismos de sincronizacao quando existem recursos compartilhados.
+
+O principal objetivo do pool de threads e melhorar o aproveitamento dos
+recursos do sistema, reduzir o custo de criacao de threads e controlar
+a execucao de tarefas concorrentes.
