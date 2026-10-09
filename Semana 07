@@ -1,0 +1,6 @@
+- Socket é um recurso de baixo nível
+- Conecta 2 máquinas
+- Usa o modelo TCP/IP: endereço IP, porta lógica
+- Estrutura clássica para a arquitetura cliente-servidor
+    - servidor (java): ServerSocket (porta logica autorizada) + Socket (representando o cliente) + leitor (input) e escritor (output) de socket + threads para não bloquear a comunicação
+    - cliente: Socket (endereço ip + porta lógica do servidor) + leitor (input) e escritor (output)
