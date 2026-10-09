@@ -1,0 +1,24 @@
+
+ENTREGA DE TRABALHO, fiz com o Artur
+
+Exercício 1: Caixas de Evento (Com Compartilhamento de Memória)
+
+Objetivo: 5 threads somam 1.000 vendas de R$ 10,00 cada na variável saldo_central.
+
+Resultado esperado: R$ 50.000,00.
+
+Exercício 2: Relatório de Filiais (Sem Compartilhamento de Memória)
+
+Objetivo: 4 threads calculam a soma local de 4 listas isoladas (vendas de filiais).
+
+Resultado esperado: Thread principal aguarda todas (join) e realiza a soma tudo
+
+
+
+- Revisão
+    - passagem de parâmetro Java (construtor), C# (construtor) e Python (args)
+    - quando threads NÃO DEVEM ser utilizadas
+        - baixa complexidade das rotinas ou tarefas envolvidas
+        - seção crítica:
+            - não há possibilidade de gerenciar via sincronismo (java) e lock (C# e Python)
+- Threads com memória compartilhada
