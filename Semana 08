@@ -1,0 +1,3 @@
+- Uso de sockets
+    - arquitetura cliente-servidor: chat (tanto servidor, quanto cliente escreviam e liam no socket)
+    - arquitetura cliente-servidor: servidor é um prestador de serviço. Instancia/conecta, recebe cliente, processa, devolve, fecha e recomeça o ciclo
