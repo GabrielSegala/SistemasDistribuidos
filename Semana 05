@@ -6,6 +6,7 @@
     - diferenças entre grid (computação concomitante) e cluster (computação paralela)
         - programação concomitante = threads
         - programação paralela = cuda, openMP, MPI
+-------------------------------------------------------------------------------------------
     - comunicação entre computadores ou equipamentos em sistemas distribuídos
         - model TCP/IP: endereço, porta, máscara de rede, socket, camada de transporte (UDP e TCP)
     - comunicação é leitura (consumidor) ou é escrita (produtor) - É BLOQUEANTE
@@ -19,6 +20,7 @@
             - via relógio: físico e lógico (lamport)
             - exclusão mútua - lock ou relógio ou eleição
 
+-------------------------------------------------------------------------------------------
 - Pool de Threads
 
 - Atividades:
